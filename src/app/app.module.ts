@@ -5,6 +5,7 @@ import {BusyModule} from 'angular2-busy';
 
 import {AppComponent} from './app.component';
 import {VisitorHomeComponent} from './visitor/home/home.component'
+import {VisitorNavComponent} from './visitor/nav/nav.component';
 import {AppRoutingModule} from './app.routes';
 
 import {AppService} from './shared/service/app.service';
@@ -12,7 +13,8 @@ import {AppService} from './shared/service/app.service';
 @NgModule({
   declarations: [
     AppComponent,
-    VisitorHomeComponent
+    VisitorHomeComponent,
+    VisitorNavComponent
   ],
   imports: [
     BrowserModule,
