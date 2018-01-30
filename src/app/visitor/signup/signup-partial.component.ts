@@ -17,6 +17,7 @@ export class SignUpPartialComponent implements OnInit, AfterViewChecked {
     month: number,
     day: number
   }
+  public employeeType: boolean = false;
   private now = new Date();
 
   private registrationForm: NgForm;
@@ -56,7 +57,7 @@ export class SignUpPartialComponent implements OnInit, AfterViewChecked {
 
   initUser() {
     this.user =  <any>{};
-    this.user['employeeType'] = false;
+    this.employeeType = false;
     this.registrationDate =  {
       year: this.now.getFullYear(),
       month: this.now.getMonth() + 1,
@@ -71,7 +72,7 @@ export class SignUpPartialComponent implements OnInit, AfterViewChecked {
     this.user.password = '12qwert12';
     this.user.confirmPassword = '12qwert12';
 
-    this.user.employeeType = true;
+    this.employeeType = true;
     this.user.businessName = 'Ozkart Corp';
     this.user.controlNumber = '54001054561';
     this.user.businessType = 'Home and Corp';
@@ -80,7 +81,7 @@ export class SignUpPartialComponent implements OnInit, AfterViewChecked {
 
   clearObjectBeforeSave() {
     // send registration date only if it's company (LTD)
-    if (this.user.employeeType) {
+    if (this.employeeType) {
       this.user['registrationDate'] = new Date();
       this.user['registrationDate'].setFullYear(this.registrationDate.year);
       this.user['registrationDate'].setMonth(this.registrationDate.month -1);
@@ -88,6 +89,10 @@ export class SignUpPartialComponent implements OnInit, AfterViewChecked {
     } else {
       delete this.user['registrationDate'];
     }
+
+    this.user['role'] = this.registrationType;
+    this.user.isCompany = !!this.employeeType;
+    this.user.isIndividual = !this.employeeType;
   }
 
   createEmployer() {

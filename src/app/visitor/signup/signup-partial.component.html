@@ -96,13 +96,13 @@
                   <label for="employeeType" class="cols-sm-2 control-label">Are you company? or individual</label>
                   <div class="cols-sm-10">
                     <label class="switch">
-                      <input type="checkbox" name="employeeType" id="employeeType" [(ngModel)]="user['employeeType']">
+                      <input type="checkbox" name="employeeType" id="employeeType" [(ngModel)]="employeeType">
                       <span class="slider"></span>
                     </label>
                   </div>
                 </div>
                 <!-- Company Details -->
-                <ng-container *ngIf="user['employeeType']">
+                <ng-container *ngIf="employeeType">
                   <div class="form-group">
                     <label for="businessName" class="cols-sm-2 control-label">Business Name</label>
                     <div class="cols-sm-10">

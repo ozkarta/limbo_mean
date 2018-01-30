@@ -4,10 +4,11 @@ export interface User {
   email: String,
   password: String,
   confirmPassword: String,
-  employeeType: boolean,
+  isIndividual: boolean,
+  isCompany: boolean,
   businessName: String,
-  controlNumber: String,
   businessType: String,
+  controlNumber: String,
   principalOfficeAddress: String,
   registrationDate: Date
 }
