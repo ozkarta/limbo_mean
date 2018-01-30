@@ -64,7 +64,7 @@
                       <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
                       <!--<input type="password" class="form-control" name="password" [(ngModel)]="user['password']" placeholder="Enter your Password" minlength="6" required validateEqual="confirmPassword" reverse="true"/>-->
 
-                      <input type="password" class="form-control" name="password" id="password" [ngModel]="user.password" placeholder="Enter your Password" minlength="6" required validateEqual="confirmPassword" reverse="true">
+                      <input type="password" class="form-control" name="password" id="password" [(ngModel)]="user['password']" placeholder="Enter your Password" minlength="6" required validateEqual="confirmPassword" reverse="true">
 
                       <div *ngIf="registrationFormErrors['password']">
                         {{registrationFormErrors['password']}}
@@ -80,7 +80,7 @@
                       <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
                       <!--<input type="password" class="form-control" name="confirmPassword" [(ngModel)]="user['confirmPassword']" placeholder="Confirm your Password" minlength="6" required validateEqual="password"/>-->
 
-                      <input type="password" class="form-control" name="confirmPassword" id="confirmPassword" [ngModel]="user.confirmPassword" placeholder="Confirm your Password" minlength="6" required validateEqual="password">
+                      <input type="password" class="form-control" name="confirmPassword" id="confirmPassword" [(ngModel)]="user['confirmPassword']" placeholder="Confirm your Password" minlength="6" required validateEqual="password">
 
                       <div *ngIf="registrationFormErrors['confirmPassword']">
                         {{registrationFormErrors['confirmPassword']}}

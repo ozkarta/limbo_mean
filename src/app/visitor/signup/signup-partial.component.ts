@@ -62,13 +62,32 @@ export class SignUpPartialComponent implements OnInit, AfterViewChecked {
       month: this.now.getMonth() + 1,
       day: this.now.getDate()
     };
+
+
+    // For test purpose
+    this.user.firstName = 'Oz';
+    this.user.lastName = 'Kart';
+    this.user.email = 'ozbegi1@gmail.com';
+    this.user.password = '12qwert12';
+    this.user.confirmPassword = '12qwert12';
+
+    this.user.employeeType = true;
+    this.user.businessName = 'Ozkart Corp';
+    this.user.controlNumber = '54001054561';
+    this.user.businessType = 'Home and Corp';
+    this.user.principalOfficeAddress = 'Tbilisi, Tashkenti st 25, app 10';
   }
 
   clearObjectBeforeSave() {
-    this.user['registrationDate'] = new Date();
-    this.user['registrationDate'].setFullYear(this.registrationDate.year);
-    this.user['registrationDate'].setMonth(this.registrationDate.month -1);
-    this.user['registrationDate'].setDate(this.registrationDate.day);
+    // send registration date only if it's company (LTD)
+    if (this.user.employeeType) {
+      this.user['registrationDate'] = new Date();
+      this.user['registrationDate'].setFullYear(this.registrationDate.year);
+      this.user['registrationDate'].setMonth(this.registrationDate.month -1);
+      this.user['registrationDate'].setDate(this.registrationDate.day);
+    } else {
+      delete this.user['registrationDate'];
+    }
   }
 
   createEmployer() {
