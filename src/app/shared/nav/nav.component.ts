@@ -8,7 +8,7 @@ import {Title} from '@angular/platform-browser';
 export class MainNavComponent implements OnInit {
 
   constructor(private titleService: Title) {
-
+    console.log('Nav Constructor...');
   }
 
   ngOnInit() {

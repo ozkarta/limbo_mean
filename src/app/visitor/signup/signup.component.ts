@@ -7,9 +7,15 @@ import {AppService} from '../../shared/service/app.service';
 })
 
 export class SignUpComponent implements OnInit {
+  public user: any = {};
+
   constructor(public appService: AppService) {}
 
   ngOnInit() {
+    this.initUser();
+  }
 
+  initUser() {
+    this.user['employeeType'] = false;
   }
 }

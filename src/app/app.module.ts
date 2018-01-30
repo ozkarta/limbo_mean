@@ -1,4 +1,6 @@
 import {BrowserModule} from '@angular/platform-browser';
+import {FormsModule} from '@angular/forms';
+import {CommonModule} from '@angular/common';
 import {NgModule} from '@angular/core';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {BusyModule} from 'angular2-busy';
@@ -18,6 +20,8 @@ import {AppService} from './shared/service/app.service';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    CommonModule,
     NgbModule.forRoot(),
     BusyModule,
 
