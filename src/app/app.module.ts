@@ -12,11 +12,14 @@ import {AppComponent} from './app.component';
 import {MainNavComponent} from  './shared/nav/nav.component';
 // Services
 import {AppService} from './shared/service/app.service';
+// Directives
+import {EqualValidatorDirective} from './shared/util/validators.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MainNavComponent
+    MainNavComponent,
+    EqualValidatorDirective
   ],
   imports: [
     BrowserModule,

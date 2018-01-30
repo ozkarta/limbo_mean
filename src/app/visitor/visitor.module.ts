@@ -10,6 +10,7 @@ import {VisitorHomeComponent} from './home/home.component'
 import {VisitorNavComponent} from './nav/nav.component';
 import {SignInComponent} from './signin/signin.component';
 import {SignUpComponent} from './signup/signup.component';
+import {SignUpPartialComponent} from './signup/signup-partial.component'
 import {ContactComponent} from './contact/contact.component';
 import {AboutComponent} from './about/about.component';
 import {HowItWorksComponent} from './how-it-works/how-it-works.component';
@@ -20,6 +21,7 @@ import {HowItWorksComponent} from './how-it-works/how-it-works.component';
     VisitorNavComponent,
     SignInComponent,
     SignUpComponent,
+    SignUpPartialComponent,
     ContactComponent,
     AboutComponent,
     HowItWorksComponent

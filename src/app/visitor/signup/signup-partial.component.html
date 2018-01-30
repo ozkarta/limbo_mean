@@ -1,0 +1,193 @@
+
+<ng-container>
+  <div class="container">
+        <div class="row main">
+          <div class="panel-heading">
+             <div class="panel-title text-center">
+                <h1 class="title">Find Job</h1>
+                <hr />
+              </div>
+          </div>
+          <div class="main-login main-center">
+
+
+            <form class="form-horizontal" #registrationForm="ngForm">
+              <!-- Common Fields -->
+              <ng-container>
+                <!-- firstName -->
+                <div class="form-group">
+                  <label for="firstName" class="cols-sm-2 control-label">First Name</label>
+                  <div class="cols-sm-10">
+                    <div class="input-group">
+                      <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                      <input type="text" class="form-control" name="firstName" id="firstName" [(ngModel)]="user['firstName']"  placeholder="Enter your First Name" required/>
+
+                      <div *ngIf="registrationFormErrors['firstName']">
+                        {{registrationFormErrors['firstName']}}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- lastName -->
+                <div class="form-group">
+                  <label for="lastName" class="cols-sm-2 control-label">Last Name</label>
+                  <div class="cols-sm-10">
+                    <div class="input-group">
+                      <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                      <input type="text" class="form-control" name="lastName" id="lastName" [(ngModel)]="user['lastName']" placeholder="Enter your Last Name" required/>
+
+                      <div *ngIf="registrationFormErrors['lastName']">
+                        {{registrationFormErrors['lastName']}}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- email -->
+                <div class="form-group">
+                  <label for="email" class="cols-sm-2 control-label">EMAIL</label>
+                  <div class="cols-sm-10">
+                    <div class="input-group">
+                      <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                      <input type="text" class="form-control" name="email" id="email" [(ngModel)]="user['email']" placeholder="Enter your email" required pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,6}$" maxlength="128"/>
+
+                      <div *ngIf="registrationFormErrors['email']">
+                        {{registrationFormErrors['email']}}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- password -->
+                <div class="form-group">
+                  <label for="password" class="cols-sm-2 control-label">Password</label>
+                  <div class="cols-sm-10">
+                    <div class="input-group">
+                      <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                      <!--<input type="password" class="form-control" name="password" [(ngModel)]="user['password']" placeholder="Enter your Password" minlength="6" required validateEqual="confirmPassword" reverse="true"/>-->
+
+                      <input type="password" class="form-control" name="password" id="password" [ngModel]="user.password" placeholder="Enter your Password" minlength="6" required validateEqual="confirmPassword" reverse="true">
+
+                      <div *ngIf="registrationFormErrors['password']">
+                        {{registrationFormErrors['password']}}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- comfirmPassword -->
+                <div class="form-group">
+                  <label for="confirmPassword" class="cols-sm-2 control-label">Confirm Password</label>
+                  <div class="cols-sm-10">
+                    <div class="input-group">
+                      <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                      <!--<input type="password" class="form-control" name="confirmPassword" [(ngModel)]="user['confirmPassword']" placeholder="Confirm your Password" minlength="6" required validateEqual="password"/>-->
+
+                      <input type="password" class="form-control" name="confirmPassword" id="confirmPassword" [ngModel]="user.confirmPassword" placeholder="Confirm your Password" minlength="6" required validateEqual="password">
+
+                      <div *ngIf="registrationFormErrors['confirmPassword']">
+                        {{registrationFormErrors['confirmPassword']}}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </ng-container>
+
+              <ng-container *ngIf="registrationType === 'employee'">
+                <!-- Employee Type -->
+                <div class="form-group">
+                  <label for="employeeType" class="cols-sm-2 control-label">Are you company? or individual</label>
+                  <div class="cols-sm-10">
+                    <label class="switch">
+                      <input type="checkbox" name="employeeType" id="employeeType" [(ngModel)]="user['employeeType']">
+                      <span class="slider"></span>
+                    </label>
+                  </div>
+                </div>
+                <!-- Company Details -->
+                <ng-container *ngIf="user['employeeType']">
+                  <div class="form-group">
+                    <label for="businessName" class="cols-sm-2 control-label">Business Name</label>
+                    <div class="cols-sm-10">
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                        <input type="text" class="form-control" name="businessName" id="businessName" [(ngModel)]="user['businessName']"  placeholder="Business Name" required/>
+
+                        <div *ngIf="registrationFormErrors['businessName']">
+                          {{registrationFormErrors['businessName']}}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="controlNumber" class="cols-sm-2 control-label">Control Number</label>
+                    <div class="cols-sm-10">
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                        <input type="text" class="form-control" name="controlNumber" id="controlNumber" [(ngModel)]="user['controlNumber']"  placeholder="Control Number" required/>
+
+                        <div *ngIf="registrationFormErrors['controlNumber']">
+                          {{registrationFormErrors['controlNumber']}}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="businessType" class="cols-sm-2 control-label">Business Type</label>
+                    <div class="cols-sm-10">
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                        <input type="text" class="form-control" name="businessType" id="businessType" [(ngModel)]="user['businessType']"  placeholder="Business Type" required/>
+
+                        <div *ngIf="registrationFormErrors['businessType']">
+                          {{registrationFormErrors['businessType']}}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="principalOfficeAddress" class="cols-sm-2 control-label">Principal Office Address</label>
+                    <div class="cols-sm-10">
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                        <input type="text" class="form-control" name="principalOfficeAddress" id="principalOfficeAddress" [(ngModel)]="user['principalOfficeAddress']"  placeholder="Principal Office Address" required/>
+
+                        <div *ngIf="registrationFormErrors['principalOfficeAddress']">
+                          {{registrationFormErrors['principalOfficeAddress']}}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="registrationDate" class="cols-sm-2 control-label">Registration Date</label>
+                    <div class="cols-sm-10">
+                      <div class="input-group">
+                        <!-- <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span> -->
+                        <!-- <ngb-datepicker name="registrationDate" [(ngModel)]="user['registrationDate']"></ngb-datepicker> -->
+                        <!-- <input type="text" class="form-control" name="registrationDate" [(ngModel)]="user['registrationDate']"  placeholder="Registration Date"/> -->
+                        <input class="form-control" placeholder="yyyy-mm-dd" name="registrationDate" id="registrationDate" [(ngModel)]="registrationDate" ngbDatepicker #d="ngbDatepicker" required/>
+                        <div class="input-group-append">
+                          <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button">
+                            <img src="img/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
+                          </button>
+                        </div>
+
+                        <div *ngIf="registrationFormErrors['registrationDate']">
+                          {{registrationFormErrors['registrationDate']}}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </ng-container>
+              </ng-container>
+
+
+              <!-- Submit -->
+              <div class="form-group ">
+                <button type="button" class="btn btn-primary btn-lg btn-block login-button" (click)="createEmployee();">Register</button>
+              </div>
+              <div class="login-register">
+                 <a [routerLink]="['/log-in']" >Login</a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+</ng-container>
