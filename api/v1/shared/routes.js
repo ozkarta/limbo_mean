@@ -5,5 +5,12 @@ module.exports = function (express) {
   router.use(passport.initialize());
   router.use(passport.session());
 
+  // Controllers
+  let userController = require('../components/user/user.controller')(express);
+
+
+  // Routes
+  router.use('/users', userController);
+
   return router;
 };
