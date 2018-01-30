@@ -2,6 +2,7 @@ import {Component, OnInit, AfterViewChecked, ViewChild} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {AppService} from '../../shared/service/app.service';
 import {User} from '../../shared/models/user';
+import {UserService} from '../../shared/service/user.service';
 
 @Component({
   selector: 'app-signup-partial',
@@ -23,7 +24,8 @@ export class SignUpPartialComponent implements OnInit, AfterViewChecked {
   private registrationForm: NgForm;
   @ViewChild('registrationForm') viewRegistrationForm: NgForm;
 
-  constructor(public appService: AppService) {}
+  constructor(public appService: AppService,
+              private userService: UserService) {}
 
   ngOnInit() {
     this.initUser();
@@ -86,6 +88,8 @@ export class SignUpPartialComponent implements OnInit, AfterViewChecked {
       this.user['registrationDate'].setFullYear(this.registrationDate.year);
       this.user['registrationDate'].setMonth(this.registrationDate.month -1);
       this.user['registrationDate'].setDate(this.registrationDate.day);
+      // Set time to 00
+      this.user['registrationDate'].setHours(0, 0, 0, 0);
     } else {
       delete this.user['registrationDate'];
     }
@@ -98,11 +102,29 @@ export class SignUpPartialComponent implements OnInit, AfterViewChecked {
   createEmployer() {
     this.clearObjectBeforeSave();
     console.dir(this.user);
+    this.userService.registerUser(this.user)
+      .subscribe(
+        success => {
+          console.dir(success);
+        },
+        error => {
+          console.dir(error);
+        }
+      );
   }
 
   createEmployee() {
     this.clearObjectBeforeSave();
     console.dir(this.user);
+    this.userService.registerUser(this.user)
+      .subscribe(
+        success => {
+          console.dir(success);
+        },
+        error => {
+          console.dir(error);
+        }
+      );
   }
 
   public registrationFormErrors = {

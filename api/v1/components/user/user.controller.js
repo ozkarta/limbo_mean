@@ -10,6 +10,7 @@ module.exports = function (express) {
 	});
 
 	router.post('/register', (req, res) => {
+		console.dir(req.body);
 		return res.status(200).json({});
 	});
 
