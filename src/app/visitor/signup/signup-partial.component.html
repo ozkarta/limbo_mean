@@ -180,9 +180,14 @@
 
 
               <!-- Submit -->
-              <div class="form-group ">
-                <button type="button" class="btn btn-primary btn-lg btn-block login-button" (click)="createEmployee();">Register</button>
+              <div class="form-group" *ngIf="registrationType === 'employee'">
+                <button type="button" class="btn btn-primary btn-lg btn-block login-button" (click)="createEmployee();" [disabled]="!registrationForm.form.valid">Register As Employee</button>
               </div>
+
+              <div class="form-group" *ngIf="registrationType === 'employer'">
+                <button type="button" class="btn btn-primary btn-lg btn-block login-button" (click)="createEmployer();" [disabled]="!registrationForm.form.valid">Register As Employer</button>
+              </div>
+
               <div class="login-register">
                  <a [routerLink]="['/log-in']" >Login</a>
               </div>

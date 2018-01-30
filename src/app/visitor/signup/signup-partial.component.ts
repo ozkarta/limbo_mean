@@ -43,7 +43,6 @@ export class SignUpPartialComponent implements OnInit, AfterViewChecked {
             // clear previous error message (if any)
             this.registrationFormErrors[field] = '';
             const control = form.get(field);
-            console.dir(control);
             if (control && control.dirty &&  !control.valid) {
               const messages = this.registrationValidationMessages[field];
               for (const key in control.errors) {
@@ -65,7 +64,7 @@ export class SignUpPartialComponent implements OnInit, AfterViewChecked {
     };
   }
 
-  clearObjectBeforSave() {
+  clearObjectBeforeSave() {
     this.user['registrationDate'] = new Date();
     this.user['registrationDate'].setFullYear(this.registrationDate.year);
     this.user['registrationDate'].setMonth(this.registrationDate.month -1);
@@ -73,12 +72,12 @@ export class SignUpPartialComponent implements OnInit, AfterViewChecked {
   }
 
   createEmployer() {
-    this.clearObjectBeforSave();
+    this.clearObjectBeforeSave();
     console.dir(this.user);
   }
 
   createEmployee() {
-    this.clearObjectBeforSave();
+    this.clearObjectBeforeSave();
     console.dir(this.user);
   }
 
