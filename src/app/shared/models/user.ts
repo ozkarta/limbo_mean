@@ -4,6 +4,7 @@ export interface User {
   email: String,
   password: String,
   confirmPassword: String,
+  role: String,
   isIndividual: boolean,
   isCompany: boolean,
   businessName: String,

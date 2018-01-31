@@ -16,6 +16,7 @@ import {AppService} from './shared/service/app.service';
 import {UserService} from './shared/service/user.service';
 // Directives
 import {EqualValidatorDirective} from './shared/util/validators.directive';
+import {EmployerModule} from './employer/employer.module';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import {EqualValidatorDirective} from './shared/util/validators.directive';
     NgbModule.forRoot(),
     BusyModule,
 
-    VisitorModule
+    VisitorModule,
+    EmployerModule
   ],
   providers: [
     AppService,

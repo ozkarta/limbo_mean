@@ -1,4 +1,8 @@
 
 <ng-container>
-  <app-visitor-navbar></app-visitor-navbar>
+  <app-visitor-navbar *ngIf="!user"></app-visitor-navbar>
+
+  <ng-container *ngIf="user">
+    <app-employer-navbar *ngIf="user.role === 'employer'"></app-employer-navbar>
+  </ng-container>
 </ng-container>

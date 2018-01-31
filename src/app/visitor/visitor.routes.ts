@@ -9,10 +9,13 @@ import {ContactComponent} from './contact/contact.component';
 import {AboutComponent} from './about/about.component';
 import {HowItWorksComponent} from './how-it-works/how-it-works.component';
 
+import {VisitorAuthGuard} from './visitor-auth.guard';
+
 export const routes:Routes = [
   {
     path: '',
-    component: VisitorHomeComponent
+    component: VisitorHomeComponent,
+    canActivate: [VisitorAuthGuard]
   },
   // Different Sign In URLS
   {
@@ -71,11 +74,6 @@ export const routes:Routes = [
   {
     path: 'FAQ',
     redirectTo: '/how-it-works',
-    pathMatch: 'full'
-  },
-  {
-    path: '**',
-    redirectTo: '/',
     pathMatch: 'full'
   }
 ];
