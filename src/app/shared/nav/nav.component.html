@@ -4,5 +4,7 @@
 
   <ng-container *ngIf="user">
     <app-employer-navbar *ngIf="user.role === 'employer'"></app-employer-navbar>
+
+    <app-employee-navbar *ngIf="user.role === 'employee'"></app-employee-navbar>
   </ng-container>
 </ng-container>

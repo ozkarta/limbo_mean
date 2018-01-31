@@ -3,6 +3,7 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot} from '@angular/router';
 import {AppService} from '../shared/service/app.service';
+import {User} from '../shared/models/user';
 
 @Injectable()
 export class EmployeeAuthGuard implements CanActivate {
@@ -10,13 +11,19 @@ export class EmployeeAuthGuard implements CanActivate {
               private appService: AppService) {}
 
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    return this.appService.isLoggedIn
+    return this.appService.user
       .take(1)
-      .map((isLoggedIn: boolean) => {
-        if (!isLoggedIn) {
-          this.router.navigate(['/login']).then();
-          return false;
+      .map((user: User) => {
+        if (user && user.role) {
+          switch(user.role) {
+            case  'employee' :
+              return true;
+            default:
+              this.router.navigate(['/']).then();
+              return false;
+          }
         }
+        this.router.navigate(['/']).then();
         return true;
       });
   }

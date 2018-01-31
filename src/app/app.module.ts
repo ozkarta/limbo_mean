@@ -8,6 +8,8 @@ import {HttpClientModule} from '@angular/common/http';
 
 // Custom Modules
 import {VisitorModule} from './visitor/visitor.module';
+import {EmployerModule} from './employer/employer.module';
+import {EmployeeModule} from './employee/employee.module';
 // Components
 import {AppComponent} from './app.component';
 import {MainNavComponent} from  './shared/nav/nav.component';
@@ -16,7 +18,6 @@ import {AppService} from './shared/service/app.service';
 import {UserService} from './shared/service/user.service';
 // Directives
 import {EqualValidatorDirective} from './shared/util/validators.directive';
-import {EmployerModule} from './employer/employer.module';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import {EmployerModule} from './employer/employer.module';
     BusyModule,
 
     VisitorModule,
-    EmployerModule
+    EmployerModule,
+    EmployeeModule
   ],
   providers: [
     AppService,
