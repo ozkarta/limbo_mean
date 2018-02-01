@@ -1,9 +1,9 @@
 module.exports.userRegistrationRules = {
 	firstName: {
 		required: true,
-		minLength: 10,
-		maxLength: 100,
-		pattern: '',
+		minLength: 5,
+		maxLength: 1,
+		pattern: '^([a-z0-9]{5,})$',
 		date: true,
 		number: true,
 	},

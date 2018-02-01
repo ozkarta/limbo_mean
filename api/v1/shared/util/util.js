@@ -14,19 +14,23 @@ exports.validateRequestBody = (res, target, rules) => {
 						}
 
 					case 'minLength':
-						validateMinLength();
+						validateMinLength(field, rules[field][validation]);
 
 					case 'maxLength':
-						validateMaxLength();
+						validateMaxLength(field, rules[field][validation]);
 
 					case 'pattern':
-						validatePattern();
+						validatePattern(field, rules[field][validation]);
 
 					case 'date':
-						validateDate();
+						if (rules[field][validation]) {
+							validateDate(field);
+						}
 
 					case 'number':
-						validateNumber();
+						if (rules[field][validation]) {
+							validateNumber(field);
+						}
 
 				}
 			})
@@ -44,24 +48,84 @@ exports.validateRequestBody = (res, target, rules) => {
 		}
 	}
 
-	function validateMinLength() {
+	function validateMinLength(field, value) {
+		if (!field || !value) {
+			return;
+		}
 
+		if (target[field]) {
+			if (target[field].length < value) {
+				if (!errorObject[field]) {
+					errorObject[field] = {};
+				}
+
+				errorObject[field]['minLength'] = `Min Length of ${field} must be ${value}.`;
+			}
+		}
 	}
 
-	function validateMaxLength() {
+	function validateMaxLength(field, value) {
+		if (!field || !value) {
+			return;
+		}
 
+		if (target[field]) {
+			if (target[field].length > value) {
+				if (!errorObject[field]) {
+					errorObject[field] = {};
+				}
+
+				errorObject[field]['maxLength'] = `Max Length of ${field} must be ${value}.`;
+			}
+		}
 	}
 
-	function validatePattern() {
+	function validatePattern(field, value) {
+		if (!target[field]) {
+			return;
+		}
+		let regExp = new RegExp(value);
+		if (!regExp.test(target[field])) {
+			if (!errorObject[field]) {
+				errorObject[field] = {};
+			}
 
+			errorObject[field]['pattern'] = `${field} must match to Pattern: \'${value}\'.`;
+		}
 	}
 
-	function validateDate() {
+	function validateDate(field) {
+		// TODO date validation needs to be fixed
+		if (!field) {
+			return;
+		}
 
+		if (target[field]) {
+			let date = new Date(target[field]);
+			if ( isNaN( date.getTime() ) ) {
+					if (!errorObject[field]) {
+						errorObject[field] = {};
+					}
+
+					errorObject[field]['date'] = `${field} must be in Date format.`;
+			}
+		}
 	}
 
-	function validateNumber() {
+	function validateNumber(field) {
+		if (!field) {
+			return;
+		}
 
+		if (target[field]) {
+			if ( isNaN( Number(target[field]) ) ) {
+				if (!errorObject[field]) {
+					errorObject[field] = {};
+				}
+
+				errorObject[field]['number'] = `${field} must be in Number.`;
+			}
+		}
 	}
 
 	if (Object.keys(errorObject).length > 0) {
