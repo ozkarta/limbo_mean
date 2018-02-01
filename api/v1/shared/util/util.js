@@ -12,26 +12,26 @@ exports.validateRequestBody = (res, target, rules) => {
 						if (rules[field][validation]) {
 							validateRequired(field);
 						}
-
+						break;
 					case 'minLength':
 						validateMinLength(field, rules[field][validation]);
-
+						break;
 					case 'maxLength':
 						validateMaxLength(field, rules[field][validation]);
-
+						break;
 					case 'pattern':
 						validatePattern(field, rules[field][validation]);
-
+						break;
 					case 'date':
 						if (rules[field][validation]) {
 							validateDate(field);
 						}
-
+						break;
 					case 'number':
 						if (rules[field][validation]) {
 							validateNumber(field);
 						}
-
+						break;
 				}
 			})
 		}
@@ -95,14 +95,14 @@ exports.validateRequestBody = (res, target, rules) => {
 	}
 
 	function validateDate(field) {
-		// TODO date validation needs to be fixed
 		if (!field) {
 			return;
 		}
 
 		if (target[field]) {
-			let date = new Date(target[field]);
-			if ( isNaN( date.getTime() ) ) {
+			let datePattern = '^([0-9]{4})-([0-9]{2})-([0-9]{2})T([0-9]{2}):([0-9]{2}):([0-9]{2})\\.([0-9]{3})Z$'
+			let regExp = new RegExp(datePattern);
+			if (!regExp.test(target[field])) {
 					if (!errorObject[field]) {
 						errorObject[field] = {};
 					}
@@ -138,14 +138,15 @@ exports.validateRequestBody = (res, target, rules) => {
 };
 
 exports.sendHttpResponseMessage = (res, message, error, msg) => {
+	const msgToSend = Object.assign({}, message);
 	if (error) {
-		message.error = error;
+		msgToSend.error = error;
 	}
 	if (msg) {
-		message.msg = msg;
+		msgToSend.msg = msg;
 	}
 
-	return res.status(message.code).json(message);
+	return res.status(msgToSend.code).json(msgToSend);
 };
 
 
