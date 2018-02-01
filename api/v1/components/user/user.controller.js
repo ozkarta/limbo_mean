@@ -4,13 +4,15 @@ module.exports = function (express) {
 	let jwt = require('jsonwebtoken');
 	let bcrypt = require('bcryptjs');
 	let config = require('../../shared/config/config');
+	let MSG = require('../../shared/messages/messages');
+	let util = require('../../shared/util/util');
+	let validationRules = require('../../shared/validation-rules/validation-rules');
 
 	router.get('/', (req, res) => {
 		return res.status(200).json({});
 	});
 
 	router.post('/register', (req, res) => {
-		console.dir(req.body);
 		// TODO  validate response
 		// return status if validation fails
 
@@ -18,21 +20,17 @@ module.exports = function (express) {
 			.lean()
 			.exec((err, result) => {
 				if (err) {
-					// TODO return status message
-					return res.status(500).json({});
+					return util.sendHttpResponseMessage(res, MSG.serverError.internalServerError, err);
 				}
 				if (result) {
-					// TODO  return message
-					// email is already used
-					return res.status(400).json({});
+					return util.sendHttpResponseMessage(res, MSG.clientError.badRequest, null, 'User Exists');
 				}
 
 				let user = new UserModel(req.body);
 				user.passwordHash = bcrypt.hashSync(req.body.password, 8);
 				user.save((err, user) => {
 					if (err) {
-						// TODO return status message
-						return res.status(500).json({});
+						return util.sendHttpResponseMessage(res, MSG.serverError.internalServerError, err);
 					}
 
 					let token = jwt.sign({ id: user._id }, config.secret, {
@@ -56,15 +54,15 @@ module.exports = function (express) {
 			.lean()
 			.exec((err, user) => {
 				if (err) {
-
+					return util.sendHttpResponseMessage(res, MSG.serverError.internalServerError, err);
 				}
 				if (!user) {
-
+					return util.sendHttpResponseMessage(res, MSG.clientError.badRequest, null, 'Email was not found');
 				}
 
 				let passwordIsValid = bcrypt.compareSync(req.body.password, user.passwordHash);
 				if (!passwordIsValid) {
-
+					return util.sendHttpResponseMessage(res, MSG.clientError.badRequest, null, 'Password does not match');
 				}
 
 				let token = jwt.sign({ id: user._id }, config.secret, {
@@ -81,10 +79,6 @@ module.exports = function (express) {
 	});
 
 	router.put('/', (req, res) => {
-		return res.status(200).json({});
-	});
-
-	router.delete('/', (req, res) => {
 		return res.status(200).json({});
 	});
 
