@@ -13,8 +13,11 @@ module.exports = function (express) {
 	});
 
 	router.post('/register', (req, res) => {
-		// TODO  validate response
-		// return status if validation fails
+		// Make validations
+		// Return if validation function returns false (response will be sent by validator)
+		if (!util.validateRequestBody(res, req.body, validationRules.userRegistrationRules)) {
+			return;
+		}
 
 		UserModel.findOne({ email: req.body.email })
 			.lean()
