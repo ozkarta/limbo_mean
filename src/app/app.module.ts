@@ -5,6 +5,7 @@ import {NgModule} from '@angular/core';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {BusyModule} from 'angular2-busy';
 import {HttpClientModule} from '@angular/common/http';
+import {SidebarModule} from 'ng-sidebar';
 
 // Custom Modules
 import {VisitorModule} from './visitor/visitor.module';
@@ -32,6 +33,7 @@ import {EqualValidatorDirective} from './shared/util/validators.directive';
     HttpClientModule,
     NgbModule.forRoot(),
     BusyModule,
+    SidebarModule.forRoot(),
 
     VisitorModule,
     EmployerModule,

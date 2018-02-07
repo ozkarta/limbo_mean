@@ -5,6 +5,7 @@ import {NgModule} from '@angular/core';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {RouterModule} from '@angular/router';
 import {EmployerRoutingModule} from './employer.routes';
+import {SidebarModule} from 'ng-sidebar';
 
 // Components
 import {EmployerNavComponent} from './nav/nav.component';
@@ -27,6 +28,7 @@ import {EmployerAuthGuard} from './employer-auth.guard';
     FormsModule,
     CommonModule,
     NgbModule.forRoot(),
+    SidebarModule.forRoot(),
     EmployerRoutingModule
   ],
   providers: [
