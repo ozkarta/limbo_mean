@@ -9,11 +9,18 @@ import {EmployerRoutingModule} from './employer.routes';
 // Components
 import {EmployerNavComponent} from './nav/nav.component';
 import {EmployerHomeComponent} from './home/home.component'
+import {EmployerJobListComponent} from './job/job-list.component';
+import {EmployerJobFormComponent} from './job/job-form.component';
+import {EmployerJobDetailsComponent} from './job/job-details.component';
+
 import {EmployerAuthGuard} from './employer-auth.guard';
 @NgModule({
   declarations: [
     EmployerNavComponent,
-    EmployerHomeComponent
+    EmployerHomeComponent,
+    EmployerJobListComponent,
+    EmployerJobFormComponent,
+    EmployerJobDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +34,10 @@ import {EmployerAuthGuard} from './employer-auth.guard';
   ],
   exports: [
     RouterModule,
-    EmployerNavComponent
+    EmployerNavComponent,
+    EmployerJobListComponent,
+    EmployerJobFormComponent,
+    EmployerJobDetailsComponent
   ]
 })
 
