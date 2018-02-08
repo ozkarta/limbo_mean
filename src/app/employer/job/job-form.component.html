@@ -1,1 +1,37 @@
-Job Form
+<div>
+  <div class="container">
+
+    <form>
+      <div class="browse">
+
+
+        <div class="img-upload-item">
+          <ul>
+            <li *ngFor="let img of images">
+              <button class="remove btn-danger" (click)="removeImageFromUploadList(img)"><i class="material-icons">delete_forever</i></button>
+              <img [src]="img.image" alt="">
+
+            </li>
+          </ul>
+        </div>
+
+        <input #fileInput
+               type="file"
+               accept=".jpeg, .jpg, .png, "
+               ng2FileSelect
+               [uploader]="uploader"
+               size="60"
+               multiple="multiple"/>
+        <span class="btn-primary">Add Image</span>
+
+
+
+      </div>
+
+      <input type="button" (click)="uploadImages()" value="Upload">
+
+
+    </form>
+
+  </div>
+</div>

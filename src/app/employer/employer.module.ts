@@ -6,6 +6,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {RouterModule} from '@angular/router';
 import {EmployerRoutingModule} from './employer.routes';
 import {SidebarModule} from 'ng-sidebar';
+import {FileUploadModule} from 'ng2-file-upload';
 
 // Components
 import {EmployerNavComponent} from './nav/nav.component';
@@ -29,7 +30,8 @@ import {EmployerAuthGuard} from './employer-auth.guard';
     CommonModule,
     NgbModule.forRoot(),
     SidebarModule.forRoot(),
-    EmployerRoutingModule
+    EmployerRoutingModule,
+    FileUploadModule
   ],
   providers: [
     EmployerAuthGuard

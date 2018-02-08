@@ -4,8 +4,10 @@ import {CommonModule} from '@angular/common';
 import {NgModule} from '@angular/core';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {BusyModule} from 'angular2-busy';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import {SidebarModule} from 'ng-sidebar';
+import {FileUploadModule} from 'ng2-file-upload';
+import {RequestInterceptor} from './shared/interceptors/request-interceptor';
 
 // Custom Modules
 import {VisitorModule} from './visitor/visitor.module';
@@ -34,6 +36,7 @@ import {EqualValidatorDirective} from './shared/util/validators.directive';
     NgbModule.forRoot(),
     BusyModule,
     SidebarModule.forRoot(),
+    FileUploadModule,
 
     VisitorModule,
     EmployerModule,
@@ -41,7 +44,12 @@ import {EqualValidatorDirective} from './shared/util/validators.directive';
   ],
   providers: [
     AppService,
-    UserService
+    UserService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: RequestInterceptor,
+      multi: true
+    },
   ],
   bootstrap: [AppComponent]
 })
