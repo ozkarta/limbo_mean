@@ -7,6 +7,7 @@ module.exports = function (express) {
 	let MSG = require('../../shared/messages/messages');
 	let util = require('../../shared/util/util');
 	let validationRules = require('../../shared/validation-rules/validation-rules');
+	let Promise = require('promise');
 
 	router.get('/', (req, res) => {
 		return res.status(200).json({});
@@ -21,10 +22,8 @@ module.exports = function (express) {
 
 		UserModel.findOne({ email: req.body.email })
 			.lean()
-			.exec((err, result) => {
-				if (err) {
-					return util.sendHttpResponseMessage(res, MSG.serverError.internalServerError, err);
-				}
+			.exec()
+			.then(result => {
 				if (result) {
 					return util.sendHttpResponseMessage(res, MSG.clientError.badRequest, null, 'User Exists');
 				}
@@ -43,6 +42,9 @@ module.exports = function (express) {
 					delete user['passwordHash'];
 					res.status(200).send({ auth: true, token: token , user: user});
 				});
+			})
+			.catch(err => {
+					return util.sendHttpResponseMessage(res, MSG.serverError.internalServerError, err);
 			});
 
 	});
@@ -55,10 +57,8 @@ module.exports = function (express) {
 
 		UserModel.findOne({email: req.body.email})
 			.lean()
-			.exec((err, user) => {
-				if (err) {
-					return util.sendHttpResponseMessage(res, MSG.serverError.internalServerError, err);
-				}
+			.exec()
+			.then(user => {
 				if (!user) {
 					return util.sendHttpResponseMessage(res, MSG.clientError.badRequest, null, 'Email was not found');
 				}
@@ -73,6 +73,9 @@ module.exports = function (express) {
 				});
 				delete user['passwordHash'];
 				res.status(200).send({ auth: true, token: token, user: user });
+			})
+			.catch(err => {
+					return util.sendHttpResponseMessage(res, MSG.serverError.internalServerError, err);
 			});
 
 	});

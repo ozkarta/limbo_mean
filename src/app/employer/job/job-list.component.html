@@ -3,6 +3,14 @@
   <!-- A sidebar -->
   <ng-sidebar [(opened)]="_opened">
     <p>Sidebar contents</p>
+
+    <br/>
+
+    <div>
+      <p>Search</p>
+      <input type="text" name="search" [(ngModel)]="searchModel">
+      <input type="button" (click)="search()" value="Search">
+    </div>
   </ng-sidebar>
 
   <!--&lt;!&ndash; Page content &ndash;&gt;-->

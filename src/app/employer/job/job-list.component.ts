@@ -6,7 +6,8 @@ import {Component, OnInit} from '@angular/core';
 })
 
 export class EmployerJobListComponent implements OnInit {
-  private _opened: boolean = true;
+  _opened: boolean = true;
+  searchModel: string = '';
 
   constructor() {
 
@@ -18,5 +19,9 @@ export class EmployerJobListComponent implements OnInit {
 
   private _toggleSidebar() {
     this._opened = !this._opened;
+  }
+
+  search() {
+
   }
 }
