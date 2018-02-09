@@ -42,7 +42,7 @@ export class EmployerJobFormComponent implements OnInit {
   }
 
   public upload(fileInput){
-    let url = `/api/v1/upload-job-image`;
+    let url = `/api/v1/upload/image`;
     this.uploader.options.url = url;
     this.uploader.queue.forEach(item => {
       item.url = url;
