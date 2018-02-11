@@ -1,6 +1,6 @@
 module.exports = function (express) {
 	let router = express.Router();
-	let UserModel = require('./user.model').model;
+	let UserModel = require('../../shared/models/user.model').model;
 	let jwt = require('jsonwebtoken');
 	let bcrypt = require('bcryptjs');
 	let config = require('../../shared/config/config');
