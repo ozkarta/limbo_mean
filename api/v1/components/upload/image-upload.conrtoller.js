@@ -2,7 +2,7 @@ module.exports = function (express) {
 	let router = express.Router();
 	let multer  = require('multer');
 	let sharedFolderName = 'data'
-	imageUploadPath = '/uploads/images'
+	let imageUploadPath = '/uploads/images'
 	let upload = multer({ dest: `${sharedFolderName}${imageUploadPath}` });
 
 	router.post('/', upload.single('file'), (req, res) => {
