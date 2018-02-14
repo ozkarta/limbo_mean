@@ -9,6 +9,7 @@ module.exports = function (express) {
   let userController = require('../components/user/user.controller')(express);
   let imageUploadController = require('../components/upload/image-upload.conrtoller')(express);
   let defaultController = require('../components/default/default.controller')(express);
+  let enumController = require('../components/enum/enum.controller')(express);
 
   // Employer Controllers
   let employerJobController = require('../components/employer/job/job.controller')(express);
@@ -16,6 +17,7 @@ module.exports = function (express) {
   // Routes
   router.use('/users', userController);
   router.use('/upload/image', imageUploadController);
+  router.use('/enum', enumController);
 
   // Employer
   router.use('/employer/jobs', employerJobController);
